@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: "Cloud Engineer: Orang di Balik Layanan Digital yang Kita Pakai Setiap Hari",
   description:
     "Pelajari apa itu Cloud Engineer, skill yang perlu dibangun, roadmap belajar dari nol, tempat belajar, sertifikasi, dan peluang karier di Indonesia maupun dunia.",
-  metadataBase: new URL("https://cloudengineer.majalahdigital.id/"),
+  metadataBase: new URL("https://hello-cloud-omega.vercel.app/"),
   alternates: {
     canonical: "/",
   },

@@ -5,7 +5,7 @@ export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://cloudengineer.majalahdigital.id/",
+      url: "https://hello-cloud-omega.vercel.app/",
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
