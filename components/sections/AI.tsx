@@ -2,13 +2,13 @@ export default function AI() {
   return (
     <section id="ai" className="section section-tint">
       <div className="page-container">
-        <h2>AI dan masa depan Cloud Engineering</h2>
-        <p className="lead">
+        <h2 data-reveal>AI dan masa depan Cloud Engineering</h2>
+        <p className="lead" data-reveal>
           <strong>AI bukan alasan untuk tidak belajar cloud.</strong> Justru
           Cloud Engineer perlu belajar bekerja bersama AI.
         </p>
 
-        <div className="ai-grid">
+        <div className="ai-grid" data-reveal data-reveal-grid>
           <article className="card ai-card">
             <h3>Yang bisa dibantu AI</h3>
             <ul className="check-list">
@@ -31,6 +31,7 @@ export default function AI() {
 
         <div
           className="workflow-box"
+          data-reveal
           role="img"
           aria-label="Contoh alur kerja dengan AI: AI membuatkan Terraform, lalu engineer memeriksa permission, security, cost, dan reliability sebelum deploy"
         >
@@ -159,7 +160,7 @@ export default function AI() {
           </p>
         </div>
 
-        <div className="note-box">
+        <div className="note-box" data-reveal>
           <strong>Aturan emas:</strong> jangan copy-paste infrastructure code
           dari AI tanpa memahami dampaknya. Pahami dulu, baru jalankan.
         </div>

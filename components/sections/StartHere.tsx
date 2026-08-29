@@ -2,13 +2,13 @@ export default function StartHere() {
   return (
     <section id="mulai" className="section section-tint">
       <div className="page-container">
-        <h2>&quot;Saya masih SMP, mulai dari mana?&quot;</h2>
-        <p className="lead">
+        <h2 data-reveal>&quot;Saya masih SMP, mulai dari mana?&quot;</h2>
+        <p className="lead" data-reveal>
           Kabar baiknya: kamu tidak perlu langsung belajar AWS selama
           berjam-jam. Mulai dari hal yang dekat dengan kehidupanmu sehari-hari.
         </p>
 
-        <div className="start-grid">
+        <div className="start-grid" data-reveal data-reveal-grid>
           <article className="card start-card">
             <div className="start-num" aria-hidden="true">
               1

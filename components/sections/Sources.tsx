@@ -2,12 +2,12 @@ export default function Sources() {
   return (
     <section id="sumber" className="section">
       <div className="page-container page-container-narrow">
-        <h2>Sumber dan referensi</h2>
-        <p className="lead">
+        <h2 data-reveal>Sumber dan referensi</h2>
+        <p className="lead" data-reveal>
           Informasi di halaman ini diverifikasi dari sumber resmi. Detail
           ujian, harga, bahasa, dan layanan bisa berubah.
         </p>
-        <ul className="source-list">
+        <ul className="source-list" data-reveal>
           <li>
             AWS Certification -{" "}
             <a href="https://aws.amazon.com/certification/" target="_blank" rel="noopener">

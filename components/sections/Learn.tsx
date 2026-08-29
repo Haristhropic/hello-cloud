@@ -2,14 +2,14 @@ export default function Learn() {
   return (
     <section id="belajar" className="section">
       <div className="page-container">
-        <h2>Tempat belajar cloud yang aman dan terpercaya</h2>
-        <p className="lead">
+        <h2 data-reveal>Tempat belajar cloud yang aman dan terpercaya</h2>
+        <p className="lead" data-reveal>
           Prioritaskan sumber resmi dan gratis. Jangan terburu membeli kursus
           mahal sebelum memahami dasar.
         </p>
 
-        <h3 className="block-title">Sumber resmi penyedia cloud</h3>
-        <div className="resource-grid">
+        <h3 className="block-title" data-reveal>Sumber resmi penyedia cloud</h3>
+        <div className="resource-grid" data-reveal data-reveal-grid>
           <article className="card resource-card">
             <h4>AWS Skill Builder / AWS Certification</h4>
             <p>
@@ -72,8 +72,8 @@ export default function Learn() {
           </article>
         </div>
 
-        <h3 className="block-title">Lingkungan latihan dan dokumentasi</h3>
-        <div className="resource-grid">
+        <h3 className="block-title" data-reveal>Lingkungan latihan dan dokumentasi</h3>
+        <div className="resource-grid" data-reveal data-reveal-grid>
           <article className="card resource-card">
             <h4>GitHub</h4>
             <p>
@@ -148,8 +148,8 @@ export default function Learn() {
           </article>
         </div>
 
-        <h3 className="block-title">Komunitas belajar</h3>
-        <div className="resource-grid">
+        <h3 className="block-title" data-reveal>Komunitas belajar</h3>
+        <div className="resource-grid" data-reveal data-reveal-grid>
           <article className="card resource-card">
             <h4>Komunitas cloud lokal</h4>
             <p>
@@ -162,7 +162,7 @@ export default function Learn() {
           </article>
         </div>
 
-        <div className="note-box note-warn">
+        <div className="note-box note-warn" data-reveal>
           <strong>Perhatian untuk orang tua:</strong> beberapa latihan cloud
           memakai free tier, tetapi tidak semua aktivitas gratis. Awasi akun
           dan pastikan selalu menghentikan atau menghapus resource setelah

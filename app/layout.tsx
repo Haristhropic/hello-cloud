@@ -3,6 +3,7 @@ import { Figtree } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import RevealObserver from "@/components/RevealObserver";
 
 const figtree = Figtree({
   variable: "--font-figtree",
@@ -45,6 +46,7 @@ export default function RootLayout({
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <RevealObserver />
       </body>
     </html>
   );

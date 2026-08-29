@@ -2,13 +2,13 @@ export default function Why() {
   return (
     <section id="kenapa" className="section">
       <div className="page-container">
-        <h2>Kenapa perusahaan butuh Cloud Engineer?</h2>
-        <p className="lead">
+        <h2 data-reveal>Kenapa perusahaan butuh Cloud Engineer?</h2>
+        <p className="lead" data-reveal>
           Bukan soal &quot;urus awan&quot;. Ini tentang menjaga layanan digital
           tetap hidup dan bermanfaat.
         </p>
 
-        <div className="grid-6">
+        <div className="grid-6" data-reveal data-reveal-grid>
           <article className="card card-reason">
             <h3>Website harus bisa diakses banyak pengguna</h3>
             <p>Semakin ramai, server harus tetap sanggup melayani tanpa lemot.</p>
@@ -46,8 +46,8 @@ export default function Why() {
           </article>
         </div>
 
-        <h3 className="block-title">Cloud Engineer bekerja di semua industri</h3>
-        <ul className="industry-tags" aria-label="Industri yang membutuhkan Cloud Engineer">
+        <h3 className="block-title" data-reveal>Cloud Engineer bekerja di semua industri</h3>
+        <ul className="industry-tags" data-reveal data-reveal-grid aria-label="Industri yang membutuhkan Cloud Engineer">
           <li>Banking &amp; Fintech</li>
           <li>E-commerce</li>
           <li>Telekomunikasi</li>

@@ -2,14 +2,15 @@ export default function Skill() {
   return (
     <section id="skill" className="section section-tint">
       <div className="page-container">
-        <h2>Skill yang perlu dipelajari</h2>
-        <p className="lead">
+        <h2 data-reveal>Skill yang perlu dipelajari</h2>
+        <p className="lead" data-reveal>
           Bayangkan skill ini seperti pohon: mulai dari akar yang sederhana,
           lalu tumbuh ke cabang yang lebih tinggi.
         </p>
 
         <div
           className="skill-tree"
+          data-reveal data-reveal-grid
           role="list"
           aria-label="Pohon keterampilan Cloud Engineer dari dasar hingga profesional"
         >

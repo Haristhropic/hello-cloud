@@ -2,9 +2,9 @@ export default function Industry() {
   return (
     <section id="peluang" className="section">
       <div className="page-container">
-        <h2>Peluang industri: global dan Indonesia</h2>
+        <h2 data-reveal>Peluang industri: global dan Indonesia</h2>
 
-        <div className="split">
+        <div className="split" data-reveal data-reveal-grid>
           <article className="card card-outlook">
             <h3>Apa kata dunia</h3>
             <p>
@@ -42,12 +42,12 @@ export default function Industry() {
           </article>
         </div>
 
-        <h3 className="block-title">Bekerja untuk tim global</h3>
-        <p className="lead">
+        <h3 className="block-title" data-reveal>Bekerja untuk tim global</h3>
+        <p className="lead" data-reveal>
           Skill cloud bisa dipakai bekerja lintas negara, tetapi bukan jaminan
           otomatis. Perusahaan global biasanya butuh:
         </p>
-        <ul className="check-list">
+        <ul className="check-list" data-reveal>
           <li>Komunikasi teknis dalam Bahasa Inggris</li>
           <li>Mampu berkolaborasi lintas time zone</li>
           <li>Portfolio yang bisa diverifikasi</li>

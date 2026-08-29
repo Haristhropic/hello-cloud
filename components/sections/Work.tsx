@@ -2,14 +2,14 @@ export default function Work() {
   return (
     <section id="kerja" className="section section-tint">
       <div className="page-container">
-        <h2>Cloud Engineer kerjanya ngapain?</h2>
-        <p className="lead">
+        <h2 data-reveal>Cloud Engineer kerjanya ngapain?</h2>
+        <p className="lead" data-reveal>
           Singkatnya: membantu perusahaan{" "}
           <strong>menjalankan layanan digital di cloud</strong> agar aman,
           stabil, cepat, dan berkembang.
         </p>
 
-        <div className="grid-5">
+        <div className="grid-5" data-reveal data-reveal-grid>
           <article className="card card-work">
             <div className="work-num" aria-hidden="true">
               1
@@ -62,9 +62,10 @@ export default function Work() {
           </article>
         </div>
 
-        <h3 className="block-title">Contoh aktivitas, bukan jadwal baku</h3>
+        <h3 className="block-title" data-reveal>Contoh aktivitas, bukan jadwal baku</h3>
         <ol
           className="timeline"
+          data-reveal
           aria-label="Contoh aktivitas satu hari Cloud Engineer"
         >
           <li>

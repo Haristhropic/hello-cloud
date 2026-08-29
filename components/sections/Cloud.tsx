@@ -2,15 +2,15 @@ export default function Cloud() {
   return (
     <section id="cloud" className="section">
       <div className="page-container">
-        <h2>Cloud bukan tempat data melayang di langit</h2>
-        <p className="lead">
+        <h2 data-reveal>Cloud bukan tempat data melayang di langit</h2>
+        <p className="lead" data-reveal>
           Cloud adalah cara{" "}
           <strong>menggunakan komputer dan layanan digital milik penyedia</strong>{" "}
           melalui internet, bukan harus memiliki semua mesin sendiri.
         </p>
 
-        <h3 className="block-title">Kamu sebenarnya sudah memakai cloud</h3>
-        <div className="grid-3">
+        <h3 className="block-title" data-reveal>Kamu sebenarnya sudah memakai cloud</h3>
+        <div className="grid-3" data-reveal data-reveal-grid>
           <article className="card">
             <h4>Google Drive</h4>
             <p>
@@ -34,8 +34,8 @@ export default function Cloud() {
           </article>
         </div>
 
-        <h3 className="block-title">Enam konsep inti cloud</h3>
-        <div className="grid-3">
+        <h3 className="block-title" data-reveal>Enam konsep inti cloud</h3>
+        <div className="grid-3" data-reveal data-reveal-grid>
           <article className="card card-concept">
             <h4>Compute</h4>
             <p>
@@ -80,7 +80,7 @@ export default function Cloud() {
           </article>
         </div>
 
-        <details className="progressive">
+        <details className="progressive" data-reveal>
           <summary>Kenalan dengan model cloud dan model layanan</summary>
           <div className="progressive-body">
             <div className="mini-grid">

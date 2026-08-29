@@ -2,17 +2,17 @@ export default function Cert() {
   return (
     <section id="sertifikasi" className="section section-tint">
       <div className="page-container">
-        <h2>
+        <h2 data-reveal>
           Tidak ada satu sertifikasi yang wajib untuk menjadi Cloud Engineer
         </h2>
-        <p className="lead">
+        <p className="lead" data-reveal>
           Sertifikasi adalah bukti tambahan atas pengetahuan kamu. Portfolio,
           pengalaman praktik, dan pemahaman dasar tetap yang utama.
         </p>
 
         <div className="cert-group">
-          <h3 className="block-title">Level 1 - Fundamental (opsional)</h3>
-          <div className="cert-grid">
+          <h3 className="block-title" data-reveal>Level 1 - Fundamental (opsional)</h3>
+          <div className="cert-grid" data-reveal data-reveal-grid>
             <article className="card cert-card">
               <h4>AWS Certified Cloud Practitioner</h4>
               <p>
@@ -63,10 +63,10 @@ export default function Cert() {
         </div>
 
         <div className="cert-group">
-          <h3 className="block-title">
+          <h3 className="block-title" data-reveal>
             Level 2 - Associate (lebih dekat ke dunia kerja)
           </h3>
-          <div className="cert-grid">
+          <div className="cert-grid" data-reveal data-reveal-grid>
             <article className="card cert-card">
               <h4>AWS Certified Solutions Architect - Associate</h4>
               <p>
@@ -116,8 +116,8 @@ export default function Cert() {
           </div>
         </div>
 
-        <h3 className="block-title">Sertifikasi mana yang tepat untukmu?</h3>
-        <div className="decision-tree">
+        <h3 className="block-title" data-reveal>Sertifikasi mana yang tepat untukmu?</h3>
+        <div className="decision-tree" data-reveal>
           <div className="decision-row">
             <p className="decision-q">&quot;Saya masih SMP&quot;</p>
             <p className="decision-a">
@@ -149,7 +149,7 @@ export default function Cert() {
           </div>
         </div>
 
-        <div className="note-box note-warn">
+        <div className="note-box note-warn" data-reveal>
           <strong>Jangan lakukan ini:</strong> jangan mengumpulkan banyak
           sertifikat tanpa praktik, jangan menganggap sertifikat pasti dapat
           kerja, jangan membeli dump soal ilegal, dan jangan mengejar

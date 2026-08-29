@@ -2,9 +2,9 @@ export default function FAQ() {
   return (
     <section id="faq" className="section section-tint">
       <div className="page-container page-container-narrow">
-        <h2>Pertanyaan yang sering diajukan</h2>
+        <h2 data-reveal>Pertanyaan yang sering diajukan</h2>
 
-        <div className="faq-list">
+        <div className="faq-list" data-reveal>
           <details className="faq-item">
             <summary>Apakah Cloud Engineer sama dengan programmer?</summary>
             <p>

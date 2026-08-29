@@ -2,8 +2,8 @@ export default function Roadmap() {
   return (
     <section id="roadmap" className="section">
       <div className="page-container">
-        <h2>Roadmap belajar Cloud Engineer</h2>
-        <p className="lead">
+        <h2 data-reveal>Roadmap belajar Cloud Engineer</h2>
+        <p className="lead" data-reveal>
           Dua jalur sesuai posisimu sekarang. Pilih yang paling mendekati
           keadaanmu.
         </p>
@@ -17,8 +17,8 @@ export default function Roadmap() {
           </div>
 
           <div className="tab-panel panel-smp">
-            <h3 className="block-title">Jalur &quot;Saya masih SMP&quot;</h3>
-            <ol className="roadmap-list">
+            <h3 className="block-title" data-reveal>Jalur &quot;Saya masih SMP&quot;</h3>
+            <ol className="roadmap-list" data-reveal>
               <li>
                 <div className="roadmap-step">
                   <h4>Kenal komputer</h4>
@@ -94,8 +94,8 @@ export default function Roadmap() {
           </div>
 
           <div className="tab-panel panel-serius">
-            <h3 className="block-title">Jalur &quot;Saya sudah SMA / Kuliah&quot;</h3>
-            <ol className="roadmap-list roadmap-linear">
+            <h3 className="block-title" data-reveal>Jalur &quot;Saya sudah SMA / Kuliah&quot;</h3>
+            <ol className="roadmap-list roadmap-linear" data-reveal>
               <li>Computer</li>
               <li>Networking</li>
               <li>Linux</li>
@@ -108,12 +108,12 @@ export default function Roadmap() {
               <li>CI/CD</li>
               <li>Monitoring</li>
               <li>Projects</li>
-              <li className="roadmap-goal">Internship / Junior Role</li>
+              <li className="roadmap-goal" data-reveal>Internship / Junior Role</li>
             </ol>
             <p className="roadmap-note">
               Setelah itu, kamu bisa pilih spesialisasi sesuai minat.
             </p>
-            <div className="special-grid">
+            <div className="special-grid" data-reveal data-reveal-grid>
               <span>Cloud Infrastructure Engineer</span>
               <span>DevOps Engineer</span>
               <span>Site Reliability Engineer (SRE)</span>

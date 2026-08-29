@@ -54,13 +54,13 @@ export default function Quiz() {
   return (
     <section id="quiz" className="section">
       <div className="page-container page-container-narrow">
-        <h2>Apakah Cloud Engineer cocok untuk kamu?</h2>
-        <p className="lead">
+        <h2 data-reveal>Apakah Cloud Engineer cocok untuk kamu?</h2>
+        <p className="lead" data-reveal>
           Self-check informal, bukan tes karier ilmiah. Jawab jujur dan lihat
           hasilnya.
         </p>
 
-        <form className="quiz-form" onSubmit={handleSubmit}>
+        <form className="quiz-form" data-reveal onSubmit={handleSubmit}>
           {QUESTIONS.map((q) => (
             <fieldset className="quiz-item" key={q.name}>
               <legend>{q.legend}</legend>

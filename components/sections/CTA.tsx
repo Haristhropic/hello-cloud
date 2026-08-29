@@ -1,7 +1,7 @@
 export default function CTA() {
   return (
     <section id="cta" className="section cta-section">
-      <div className="page-container page-container-narrow cta-box">
+      <div className="page-container page-container-narrow cta-box" data-reveal>
         <h2>Satu langkah kecil hari ini, satu langkah cloud berikutnya</h2>
         <p>
           Mulai dari hal yang paling sederhana: buka laptopmu, pelajari cara
