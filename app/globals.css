@@ -1368,115 +1368,108 @@
 }
 
 /* ---------- Satu momen sinematik (hero) ---------- */
-@media (prefers-reduced-motion: no-preference) {
-  .hero-copy {
-    animation: hero-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
+.hero-copy {
+  animation: hero-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
 
-  .hero-flow {
-    animation: hero-rise 0.75s 0.12s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
+.hero-flow {
+  animation: hero-rise 0.75s 0.12s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
 
-  @keyframes hero-rise {
-    from {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 /* ---------- Scroll reveal (IntersectionObserver, transform/opacity saja) ----------
-   Aturan hanya aktif saat JS tersedia (kelas "js" dari RevealObserver) dan
-   pengguna tidak meminta reduced-motion. Semua gerak via transform + opacity
-   (GPU), animasi berjalan sekali lalu berhenti. */
-@media (prefers-reduced-motion: no-preference) {
-  .js [data-reveal],
-  .js [data-reveal-grid] > * {
-    opacity: 0;
-    transform: translateY(16px);
-    transition:
-      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    transition-delay: var(--reveal-delay, 0ms);
-  }
+   Aturan aktif saat JS tersedia (kelas "js" dari RevealObserver). Semua gerak
+   via transform + opacity (GPU), animasi berjalan sekali lalu berhenti. */
+.js [data-reveal],
+.js [data-reveal-grid] > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
 
-  /* Lead mengikuti judul section dengan jeda singkat */
-  .js .lead[data-reveal] {
-    transition-delay: 90ms;
-  }
+/* Lead mengikuti judul section dengan jeda singkat */
+.js .lead[data-reveal] {
+  transition-delay: 90ms;
+}
 
-  .js [data-reveal].is-visible,
-  .js [data-reveal-grid].is-visible > * {
-    opacity: 1;
-    transform: none;
-  }
+.js [data-reveal].is-visible,
+.js [data-reveal-grid].is-visible > * {
+  opacity: 1;
+  transform: none;
+}
 
-  /* Stagger kartu: naik satu per satu (40ms per item, hingga 10 item) */
-  .js [data-reveal-grid].is-visible > *:nth-child(1) {
-    transition-delay: 0ms;
-  }
-  .js [data-reveal-grid].is-visible > *:nth-child(2) {
-    transition-delay: 40ms;
-  }
-  .js [data-reveal-grid].is-visible > *:nth-child(3) {
-    transition-delay: 80ms;
-  }
-  .js [data-reveal-grid].is-visible > *:nth-child(4) {
-    transition-delay: 120ms;
-  }
-  .js [data-reveal-grid].is-visible > *:nth-child(5) {
-    transition-delay: 160ms;
-  }
-  .js [data-reveal-grid].is-visible > *:nth-child(6) {
-    transition-delay: 200ms;
-  }
-  .js [data-reveal-grid].is-visible > *:nth-child(7) {
-    transition-delay: 240ms;
-  }
-  .js [data-reveal-grid].is-visible > *:nth-child(8) {
-    transition-delay: 280ms;
-  }
-  .js [data-reveal-grid].is-visible > *:nth-child(9) {
-    transition-delay: 320ms;
-  }
-  .js [data-reveal-grid].is-visible > *:nth-child(10) {
-    transition-delay: 360ms;
-  }
-  .js [data-reveal-grid].is-visible > *:nth-child(n + 11) {
-    transition-delay: 400ms;
-  }
+/* Stagger kartu: naik satu per satu (40ms per item, hingga 10 item) */
+.js [data-reveal-grid].is-visible > *:nth-child(1) {
+  transition-delay: 0ms;
+}
+.js [data-reveal-grid].is-visible > *:nth-child(2) {
+  transition-delay: 40ms;
+}
+.js [data-reveal-grid].is-visible > *:nth-child(3) {
+  transition-delay: 80ms;
+}
+.js [data-reveal-grid].is-visible > *:nth-child(4) {
+  transition-delay: 120ms;
+}
+.js [data-reveal-grid].is-visible > *:nth-child(5) {
+  transition-delay: 160ms;
+}
+.js [data-reveal-grid].is-visible > *:nth-child(6) {
+  transition-delay: 200ms;
+}
+.js [data-reveal-grid].is-visible > *:nth-child(7) {
+  transition-delay: 240ms;
+}
+.js [data-reveal-grid].is-visible > *:nth-child(8) {
+  transition-delay: 280ms;
+}
+.js [data-reveal-grid].is-visible > *:nth-child(9) {
+  transition-delay: 320ms;
+}
+.js [data-reveal-grid].is-visible > *:nth-child(10) {
+  transition-delay: 360ms;
+}
+.js [data-reveal-grid].is-visible > *:nth-child(n + 11) {
+  transition-delay: 400ms;
 }
 
 /* ---------- Alur data mengalir (hero) ----------
    Gerak halus pada panah diagram: menyampaikan arah alur (perangkat ->
    internet -> cloud -> aplikasi) tanpa mengganggu pembacaan teks. */
-@media (prefers-reduced-motion: no-preference) {
-  .hero-flow .flow-arrow {
-    animation: flow-glow 2.4s ease-in-out infinite;
-  }
+.hero-flow .flow-arrow {
+  animation: flow-glow 2.4s ease-in-out infinite;
+}
 
-  .hero-flow .flow-arrow:nth-of-type(2) {
-    animation-delay: 0.6s;
-  }
+.hero-flow .flow-arrow:nth-of-type(2) {
+  animation-delay: 0.6s;
+}
 
-  .hero-flow .flow-arrow:nth-of-type(3) {
-    animation-delay: 1.2s;
-  }
+.hero-flow .flow-arrow:nth-of-type(3) {
+  animation-delay: 1.2s;
+}
 
-  @keyframes flow-glow {
-    0%,
-    100% {
-      opacity: 0.5;
-      transform: translateX(0);
-    }
-    50% {
-      opacity: 1;
-      transform: translateX(3px);
-    }
+@keyframes flow-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(3px);
   }
 }
 
