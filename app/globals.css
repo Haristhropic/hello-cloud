@@ -1,55 +1,52 @@
-/* ============================================================
-   Cloud Engineer — globals.css (Tailwind v4)
-   World: "Pagi di Halaman Sekolah" (Day World)
-   Port dari style.css: token → @theme, gaya → @layer base/components,
-   interaksi CSS-only (nav toggle, tab radio, details) dipertahankan
-   sama persis. Tanpa dark mode.
-   ============================================================ */
+/* =====================================================================
+   SWISS CLOUD PANEL — Neo-Brutalist Swiss Grid + Liquid Glass
+   OWN-WORLD: kertas #f4f3ef, tinta struktural #161616, biru sinyal
+   #0057ff, asam #d7f32e, jingga termal #ff4d00. Grid presisi +
+   garis hitam tegas + blok warna datar; materialnya liquid glass:
+   panel kaca buram (backdrop blur), highlight tipis, sheen.
+   Kerangka mekanik (nav-toggle hack, tab radio, details, reveal,
+   print reset) dipertahankan dari versi sebelumnya.
+   Seed: c7d1902a
+   ===================================================================== */
+
 @import "tailwindcss";
 
 @theme {
-  /* ---------- Tokens day-world ---------- */
-  --color-paper: #fbfdff;          /* ground: kertas putih segar */
-  --color-surface: #fbfdff;        /* panel (poster tercetak) */
-  --color-ink: #1b2a38;            /* tinta biru-slate tua */
-  --color-ink-soft: #43586a;       /* teks sekunder */
-  --color-ink-faint: #5a7184;      /* meta / caption */
+  --color-paper: #f4f3ef;
+  --color-paper-deep: #eae8e1;
+  --color-ink: #161616;
+  --color-ink-soft: #4d4c49;
+  --color-ink-faint: #7a7872;
+  --color-blue: #0057ff;
+  --color-blue-deep: #003fbf;
+  --color-blue-soft: #e8efff;
+  --color-acid: #d7f32e;
+  --color-acid-soft: #f2fbd4;
+  --color-orange: #ff4d00;
+  --color-orange-soft: #ffe3d4;
+  --color-flagred: #e63312;
+  --color-flagred-deep: #c2260a;
+  --color-flagred-soft: #fde8e3;
+  --color-line: rgba(22, 22, 22, 0.12);
+  --color-line-strong: rgba(22, 22, 22, 0.28);
 
-  --color-sky: #0369a1;            /* satu warna langit (aksi & tautan) */
-  --color-sky-deep: #075985;       /* hover / bidang tegas */
-  --color-sky-bright: #38bdf8;     /* pita langit dekoratif */
-  --color-sky-mid: #7dd3fc;        /* garis struktural langit */
-  --color-sky-soft: #eaf4fb;       /* bidang langit (wash) */
-  --color-sky-line: #bae6fd;       /* hairline pada bidang langit */
-  --color-sky-ink: #0b4d74;        /* teks pada bidang langit */
-
-  --color-sun: #f59e0b;            /* fajar: hanya pada aksi */
-  --color-sun-deep: #92400e;       /* teks pada bidang fajar */
-  --color-sun-soft: #fef3c7;       /* bidang fajar (wash) */
-  --color-sun-line: #fde68a;       /* hairline pada bidang fajar */
-
-  --color-red: #dc2626;            /* bendera */
-  --color-red-deep: #b91c1c;       /* teks pada bidang merah */
-  --color-red-soft: #fef2f2;       /* bidang merah (wash) */
-  --color-red-line: #fecaca;       /* hairline pada bidang merah */
-
-  --color-line: #dce4ec;           /* hairline umum */
-  --color-line-strong: #c3d2de;    /* pembatas tegas */
-
-  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, -apple-system,
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "Consolas", monospace;
 
-  --radius-card: 14px;
+  --radius-glass: 18px;
+  --radius-chip: 4px;
 
-  --shadow-soft: 0 1px 0 rgba(27, 42, 56, 0.04);
-  --shadow-nav: 0 18px 32px -20px rgba(27, 42, 56, 0.35);
+  --shadow-glass: 0 18px 40px -18px rgba(22, 22, 22, 0.28),
+    0 2px 8px rgba(22, 22, 22, 0.06);
+  --shadow-brutal: 5px 5px 0 var(--color-ink);
+  --shadow-brutal-sm: 3px 3px 0 var(--color-ink);
 
-  /* breakpoint menengah = 960px (grid konten runtuh di sini) */
   --breakpoint-bp960: 60rem;
 }
 
-/* ---------- Reset & dasar ---------- */
 @layer base {
   *,
   *::before,
@@ -58,9 +55,8 @@
   }
 
   html {
+    scroll-behavior: smooth;
     scroll-padding-top: 6rem;
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-sky-line) var(--color-paper);
   }
 
   body {
@@ -68,151 +64,187 @@
     background: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-size: 1.05rem;
-    line-height: 1.6;
+    font-size: 1.06rem;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
-  img,
-  svg {
-    display: block;
-    max-width: 100%;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  p,
-  ul,
-  ol,
-  figure,
-  blockquote {
-    margin: 0;
+  main {
+    counter-reset: mod;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    line-height: 1.15;
-    text-wrap: balance;
-  }
-
-  h1 {
-    font-size: clamp(2.1rem, 4.5vw, 3.4rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.08;
+    font-family: var(--font-display);
+    line-height: 1.18;
+    margin: 0 0 0.5em;
+    color: var(--color-ink);
   }
 
   h2 {
-    font-size: clamp(1.55rem, 3vw, 2.15rem);
-    font-weight: 800;
-    letter-spacing: -0.015em;
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
   }
 
   h3 {
-    font-size: 1.15rem;
+    font-size: 1.18rem;
     font-weight: 700;
   }
 
   h4 {
-    font-size: 1rem;
+    font-size: 1.02rem;
     font-weight: 700;
   }
 
   p {
+    margin: 0.6em 0;
     max-width: 68ch;
   }
 
+  ul,
+  ol {
+    margin: 0.6em 0;
+  }
+
   a {
-    color: var(--color-sky);
-    text-underline-offset: 3px;
-    text-decoration-thickness: 1.5px;
+    color: var(--color-blue-deep);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.18em;
   }
 
   a:hover {
-    color: var(--color-sky-deep);
+    color: var(--color-ink);
+  }
+
+  strong {
+    font-weight: 700;
   }
 
   :focus-visible {
-    outline: 3px solid var(--color-sky);
+    outline: 3px solid var(--color-blue);
     outline-offset: 2px;
-    border-radius: 4px;
   }
 
   ::selection {
-    background: var(--color-sky-line);
-    color: var(--color-sky-deep);
+    background: var(--color-acid);
+    color: var(--color-ink);
   }
 
   ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
+    width: 0.8rem;
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--color-paper);
+    background: var(--color-paper-deep);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--color-sky-line);
-    border: 3px solid var(--color-paper);
-    border-radius: 999px;
-  }
-
-  input,
-  select,
-  textarea {
-    caret-color: var(--color-sky);
-    font: inherit;
+    background: var(--color-ink);
+    border: 2px solid var(--color-paper-deep);
+    border-radius: 8px;
   }
 
   [hidden] {
-    display: none;
+    display: none !important;
   }
 }
 
-/* ---------- Aksesibilitas ---------- */
-@layer components {
-  .skip-link {
-    position: absolute;
-    left: -9999px;
-    top: 0;
-    z-index: 100;
-    padding: 0.7rem 1.2rem;
-    background: var(--color-sky);
-    color: #fff;
-    font-weight: 600;
-    border-radius: 0 0 var(--radius-card) 0;
-  }
-
-  .skip-link:focus {
-    left: 0;
-  }
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-bottom: 4px solid var(--color-acid);
+  padding: 0.7rem 1.1rem;
+  font-weight: 700;
+  transform: translateY(-200%);
+  transition: transform 0.18s ease;
 }
 
-/* ---------- Tata letak & komponen ---------- */
+.skip-link:focus {
+  transform: translateY(0);
+  color: var(--color-paper);
+}
+
 @layer components {
-  /* ---- Header & navigasi ---- */
+  /* =====================================================================
+     Nomor modul + garis tegas di bawah judul section
+     ===================================================================== */
+  #cloud h2::before,
+  #kerja h2::before,
+  #kenapa h2::before,
+  #skill h2::before,
+  #mulai h2::before,
+  #roadmap h2::before,
+  #belajar h2::before,
+  #sertifikasi h2::before,
+  #peluang h2::before,
+  #ai h2::before {
+    content: "[" counter(mod, decimal-leading-zero) "]";
+    counter-increment: mod;
+    display: block;
+    width: max-content;
+    margin-bottom: 0.85rem;
+    padding: 0.14rem 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--color-paper);
+    background: var(--color-ink);
+    border: 2px solid var(--color-ink);
+    box-shadow: 3px 3px 0 var(--color-blue);
+  }
+
+  .section h2::after {
+    content: "";
+    display: block;
+    width: 3.25rem;
+    height: 0.55rem;
+    margin-top: 1.05rem;
+    background: var(--color-acid);
+    border: 2px solid var(--color-ink);
+  }
+
+  /* =====================================================================
+     Kontainer
+     ===================================================================== */
+  .page-container {
+    width: min(100%, 72rem);
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  .page-container-narrow {
+    width: min(100%, 56rem);
+  }
+
+  /* =====================================================================
+     Header kaca (sticky) + navigasi
+     ===================================================================== */
   .site-header {
     position: sticky;
     top: 0;
     z-index: 50;
-    background: var(--color-paper);
-    border-bottom: 1px solid var(--color-line);
+    background: rgba(244, 243, 239, 0.72);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(16px) saturate(160%);
+    border-bottom: 3px solid var(--color-ink);
   }
 
   .nav-inner {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem 1.5rem;
-    width: min(1120px, 100% - clamp(2.5rem, 8vw, 4rem));
-    margin-inline: auto;
-    padding-block: 0.9rem;
+    gap: 1.4rem;
+    padding-block: 0.85rem;
   }
 
   .brand {
@@ -221,359 +253,447 @@
     gap: 0.6rem;
     text-decoration: none;
     color: var(--color-ink);
-    font-weight: 800;
-    letter-spacing: -0.01em;
   }
 
-  .brand:hover {
+  .brand-mark svg {
+    display: block;
+    box-shadow: 2px 2px 0 var(--color-ink-soft);
+  }
+
+  .brand-text {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
     color: var(--color-ink);
   }
 
-  .brand-mark {
-    display: inline-flex;
-    flex: none;
-  }
-
   .brand-text strong {
-    color: var(--color-sky);
-    font-weight: 800;
+    color: var(--color-blue);
   }
 
-  .nav-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 1.15rem;
-  }
-
-  .nav-links a {
-    color: var(--color-ink-soft);
-    text-decoration: none;
-    font-size: 0.98rem;
-    font-weight: 500;
-    padding-block: 0.2rem;
-  }
-
-  .nav-links a:hover {
-    color: var(--color-sky);
-    text-decoration: underline;
-    text-underline-offset: 5px;
-  }
-
-  /* ---- Tombol menu (mobile) ---- */
   .nav-toggle-input {
     position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-    border: 0;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .nav-toggle-btn {
     display: none;
   }
 
-  .page-container {
-    width: min(1120px, 100% - clamp(2.5rem, 8vw, 4rem));
-    margin-inline: auto;
+  .nav-links {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    list-style: none;
   }
 
-  .page-container-narrow {
-    width: min(880px, 100% - clamp(2.5rem, 8vw, 4rem));
-    margin-inline: auto;
+  .nav-links a {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-ink-soft);
   }
 
+  .nav-links a:hover {
+    color: var(--color-blue);
+  }
+
+  /* =====================================================================
+     Section dasar + bidang warna (tint)
+     ===================================================================== */
   .section {
-    padding-block: clamp(3.25rem, 8vw, 6rem);
+    padding-block: clamp(3rem, 7vw, 5rem);
+    border-top: 1px solid var(--color-line);
+    scroll-margin-top: 4rem;
   }
 
   .section-tint {
-    background: var(--color-sky-soft);
-    border-block: 1px solid var(--color-sky-line);
-  }
-
-  /* ---- Judul & lead ---- */
-  .block-title {
-    font-size: 1.2rem;
-    font-weight: 800;
-    margin-top: clamp(2.5rem, 5vw, 3.5rem);
-    margin-bottom: 1rem;
+    background: radial-gradient(
+        56rem 28rem at 92% -10%,
+        rgba(0, 87, 255, 0.12),
+        transparent 62%
+      ),
+      radial-gradient(
+        44rem 24rem at -8% 108%,
+        rgba(255, 77, 0, 0.09),
+        transparent 60%
+      ),
+      var(--color-paper);
+    border-top-color: var(--color-line-strong);
+    border-bottom: 1px solid var(--color-line-strong);
   }
 
   .lead {
-    margin-top: 0.7rem;
     color: var(--color-ink-soft);
-    font-size: clamp(1.06rem, 1.5vw, 1.2rem);
+    font-size: clamp(1.05rem, 1.5vw, 1.18rem);
     line-height: 1.6;
+    margin-top: 0.4rem;
   }
 
-  .lead strong,
-  p strong {
-    color: var(--color-ink);
+  .block-title {
+    margin-top: 2.2rem;
+    letter-spacing: -0.01em;
   }
 
-  /* ---- Grid ---- */
+  .block-title::before {
+    content: "";
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-right: 0.6rem;
+    background: var(--color-orange);
+    border: 2px solid var(--color-ink);
+    vertical-align: 0.08em;
+  }
+
+  /* =====================================================================
+     Glass card (material utama)
+     ===================================================================== */
+  .card {
+    position: relative;
+    border-radius: var(--radius-glass);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.72),
+      rgba(255, 255, 255, 0.4)
+    );
+    -webkit-backdrop-filter: blur(18px) saturate(170%);
+    backdrop-filter: blur(18px) saturate(170%);
+    box-shadow: var(--shadow-glass), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    padding: 1.35rem;
+  }
+
+  .card p {
+    color: var(--color-ink-soft);
+    font-size: 0.97rem;
+    margin: 0.35em 0 0;
+  }
+
+  .card-concept {
+    overflow: hidden;
+  }
+
+  .card-concept::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 5px;
+    background: var(--color-blue);
+  }
+
+  .card-concept h4 {
+    color: var(--color-blue-deep);
+  }
+
+  .card-concept h4::after {
+    content: "";
+    display: inline-block;
+    width: 0.45rem;
+    height: 0.45rem;
+    margin-left: 0.5rem;
+    background: var(--color-acid);
+    vertical-align: 0.08em;
+  }
+
+  .card-reason h3 {
+    font-size: 1.05rem;
+  }
+
+  .card-outlook p {
+    font-size: 0.98rem;
+  }
+
+  .source-note {
+    color: var(--color-ink-faint);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 0.8rem;
+  }
+
+  /* =====================================================================
+     Grid umum
+     ===================================================================== */
   .grid-3,
-  .grid-6 {
+  .grid-6,
+  .cert-grid,
+  .resource-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.1rem;
+    gap: 1.25rem;
+    margin-top: 1.3rem;
   }
 
   .grid-5 {
     display: grid;
     grid-template-columns: 1fr;
+    margin-top: 1.3rem;
   }
 
-  /* ---- Kartu dalam grid ---- */
-  .card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-card);
-    padding: 1.35rem;
-  }
-
-  .card h4 {
-    margin-bottom: 0.4rem;
-  }
-
-  .card p {
-    color: var(--color-ink-soft);
-    font-size: 0.99rem;
-  }
-
-  .card p strong {
-    color: var(--color-ink-soft);
-  }
-
-  /* Enam konsep inti = bidang langit (committed, brightest) */
-  .card-concept {
-    background: var(--color-sky-soft);
-    border-color: var(--color-sky-line);
-  }
-
-  .card-concept h4 {
-    color: var(--color-sky-deep);
-  }
-
-  .card-concept p,
-  .card-concept p strong {
-    color: var(--color-sky-ink);
-  }
-
-  /* Enam alasan: judul tegas di kartu putih */
-  .card-reason h3 {
-    color: var(--color-sky-deep);
-    font-weight: 800;
-    margin-bottom: 0.35rem;
-  }
-
-  /* ---- Daftar baris bernomor (poster editorial) ---- */
-  .card-work,
-  .start-card {
+  /* =====================================================================
+     Baris pekerjaan (grid-5): baris hairline + nomor kotak
+     ===================================================================== */
+  .card-work {
     display: grid;
-    grid-template-columns: 3.2rem 1fr;
-    column-gap: 1.15rem;
-    align-items: baseline;
-    background: transparent;
-    border: 0;
-    border-top: 1px solid var(--color-line);
+    grid-template-columns: 3.4rem 1fr;
+    column-gap: 1.1rem;
+    align-items: start;
+    border-top: 1px solid var(--color-line-strong);
+    padding: 1.1rem 0.25rem;
+    background: none;
     border-radius: 0;
-    padding: 1.1rem 0;
-  }
-
-  .card-work:first-of-type,
-  .start-card:first-of-type {
-    border-top: 0;
-    padding-top: 0;
-  }
-
-  .work-num,
-  .start-num {
-    font-size: 1.9rem;
-    font-weight: 800;
-    color: var(--color-sky);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: -0.02em;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   .card-work h3 {
-    line-height: 1;
+    margin: 0;
+    font-size: 1.1rem;
   }
 
-  .card-work p,
-  .start-card p {
-    grid-column: 2;
-    padding-top: 0.35rem;
+  .card-work p {
+    margin-top: 0.25rem;
   }
 
-  /* ---- Timeline ---- */
+  .work-num {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-chip);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.12rem;
+    box-shadow: 2px 2px 0 var(--color-orange);
+  }
+
+  /* =====================================================================
+     Timeline (contoh aktivitas)
+     ===================================================================== */
   .timeline {
     list-style: none;
-    max-width: 68ch;
     padding: 0;
+    margin-top: 1.4rem;
+    border-bottom: 1px solid var(--color-line-strong);
   }
 
   .timeline li {
-    display: flex;
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 0.4rem 1.4rem;
     align-items: baseline;
-    gap: 1.2rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--color-line);
-  }
-
-  .timeline li:last-child {
-    border-bottom: 0;
+    padding: 0.65rem 0.25rem;
+    border-top: 1px solid var(--color-line);
   }
 
   .timeline strong {
-    color: var(--color-sky);
+    font-family: var(--font-mono);
+    font-size: 0.92rem;
     font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
+    letter-spacing: 0.06em;
+    color: var(--color-blue);
   }
 
   .timeline span {
     color: var(--color-ink-soft);
   }
 
-  /* ---- Tags industri ---- */
+  /* =====================================================================
+     Tag industri
+     ===================================================================== */
   .industry-tags {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.6rem;
     padding: 0;
+    margin-top: 1.4rem;
   }
 
   .industry-tags li {
-    padding: 0.45rem 1rem;
-    border: 1px solid var(--color-line);
+    border: 2px solid var(--color-ink);
     border-radius: 999px;
-    color: var(--color-ink-soft);
-    font-size: 0.94rem;
-    background: var(--color-surface);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    padding: 0.4rem 1.05rem;
+    font-weight: 600;
+    font-size: 0.92rem;
+    box-shadow: 2px 2px 0 var(--color-line-strong);
+    transition: background-color 0.15s ease, color 0.15s ease,
+      transform 0.15s ease;
   }
 
-  /* ---- Skill tree ---- */
+  .industry-tags li:hover {
+    background: var(--color-acid);
+    color: var(--color-ink);
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0 var(--color-line-strong);
+  }
+
+  /* =====================================================================
+     Start grid (mulai dari mana): glass cards + nomor kotak biru
+     ===================================================================== */
+  .start-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+    margin-top: 1.4rem;
+  }
+
+  .start-card {
+    display: grid;
+    grid-template-columns: 3.2rem 1fr;
+    column-gap: 1.1rem;
+    align-items: start;
+  }
+
+  .start-card h3 {
+    margin: 0;
+    font-size: 1.08rem;
+  }
+
+  .start-card p {
+    margin-top: 0.25rem;
+  }
+
+  .start-num {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-chip);
+    background: var(--color-blue);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.12rem;
+    box-shadow: 2px 2px 0 var(--color-ink);
+  }
+
+  /* =====================================================================
+     Skill tree: level kaca + badge kotak
+     ===================================================================== */
   .skill-tree {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-  }
-
-  .skill-tree::before {
-    content: "";
-    position: absolute;
-    left: calc(1.15rem + 1.7rem);
-    top: 1.8rem;
-    bottom: 1.8rem;
-    width: 1px;
-    background: var(--color-sky-line);
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
   }
 
   .tree-level {
-    position: relative;
     display: grid;
-    grid-template-columns: 3.4rem 1fr;
-    gap: 1.15rem;
-    align-items: center;
-    background: var(--color-surface);
-    border: 1px solid var(--color-sky-line);
-    border-radius: var(--radius-card);
-    padding: 1rem 1.15rem;
+    grid-template-columns: 3.2rem 1fr;
+    gap: 1.1rem;
+    align-items: start;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-left: 6px solid var(--color-blue);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.72),
+      rgba(255, 255, 255, 0.4)
+    );
+    -webkit-backdrop-filter: blur(14px) saturate(170%);
+    backdrop-filter: blur(14px) saturate(170%);
+    box-shadow: var(--shadow-glass), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    padding: 1.05rem 1.3rem;
+  }
+
+  .tree-level h3 {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  .tree-level p {
+    margin-top: 0.3rem;
+    font-size: 0.95rem;
+    color: var(--color-ink-soft);
   }
 
   .tree-badge {
-    width: 3.4rem;
-    height: 3.4rem;
     display: grid;
     place-items: center;
-    border-radius: 50%;
-    background: var(--color-sky-soft);
-    border: 1px solid var(--color-sky-line);
-    color: var(--color-sky-ink);
-    font-weight: 800;
-    font-size: 1.2rem;
-    font-variant-numeric: tabular-nums;
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-chip);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 2px 2px 0 var(--color-acid);
   }
 
   .tree-level:first-child .tree-badge {
-    background: var(--color-sky);
-    border-color: var(--color-sky);
-    color: #fff;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    box-shadow: 2px 2px 0 var(--color-blue);
   }
 
-  .tree-level:first-child h3 {
-    color: var(--color-sky-deep);
-  }
-
-  .tree-body h3 {
-    font-size: 1.05rem;
-    font-weight: 800;
-  }
-
-  .tree-body p {
-    color: var(--color-ink-soft);
-    font-size: 0.98rem;
-  }
-
-  /* ---- Roadmap (tab radio) ---- */
+  /* =====================================================================
+     Roadmap tabs (radio hack)
+     ===================================================================== */
   .roadmap-tabs {
-    margin-top: 1.6rem;
+    margin-top: 1.8rem;
   }
 
   .roadmap-tabs input[type="radio"] {
     position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-    border: 0;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .tab-labels {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.6rem;
+    gap: 0.7rem;
+    border-bottom: 3px solid var(--color-ink);
+    padding-bottom: 0.9rem;
   }
 
   .tab-labels label {
-    padding: 0.6rem 1.2rem;
-    border: 1px solid var(--color-line);
-    border-radius: 999px;
-    background: var(--color-surface);
-    color: var(--color-ink-soft);
-    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.16s ease, color 0.16s ease,
-      border-color 0.16s ease;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-chip);
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--color-ink-soft);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.6rem 1.25rem;
+    box-shadow: var(--shadow-brutal-sm);
+    transition: background-color 0.14s ease, color 0.14s ease,
+      transform 0.14s ease, box-shadow 0.14s ease;
   }
 
   .tab-labels label:hover {
-    border-color: var(--color-sky-line);
-    color: var(--color-sky-deep);
+    background: var(--color-blue-soft);
+    color: var(--color-ink);
   }
 
   #tab-smp:checked ~ .tab-labels label[for="tab-smp"],
   #tab-serius:checked ~ .tab-labels label[for="tab-serius"] {
-    background: var(--color-sky);
-    border-color: var(--color-sky);
-    color: #fff;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    box-shadow: 1px 1px 0 var(--color-ink);
+    transform: translate(2px, 2px);
   }
 
-  #tab-smp:focus-visible ~ .tab-labels label[for="tab-smp"],
-  #tab-serius:focus-visible ~ .tab-labels label[for="tab-serius"] {
-    outline: 3px solid var(--color-sky);
-    outline-offset: 2px;
+  #tab-smp:checked ~ .tab-labels label[for="tab-smp"]:hover,
+  #tab-serius:checked ~ .tab-labels label[for="tab-serius"]:hover {
+    background: var(--color-blue);
+    color: #fff;
   }
 
   #tab-smp:checked ~ .tab-panel.panel-serius,
@@ -581,301 +701,272 @@
     display: none;
   }
 
-  .panel-smp,
-  .panel-serius {
-    display: block;
+  .tab-panel {
+    margin-top: 1.6rem;
   }
 
-  /* ---- Roadmap: langkah bernomor ---- */
+  /* ---- Langkah roadmap: nomor berurutan via CSS counter ---- */
   .roadmap-list {
     list-style: none;
+    counter-reset: step;
     padding: 0;
+    margin-top: 1.2rem;
     display: grid;
-    gap: 1.4rem;
+    gap: 1rem;
   }
 
-  .roadmap-list > li {
+  .roadmap-list:not(.roadmap-linear) > li {
     position: relative;
-    padding-left: 3.4rem;
-    padding-bottom: 1.4rem;
-    border-left: 1px solid var(--color-sky-line);
+    counter-increment: step;
+    padding-left: 3.9rem;
   }
 
-  .roadmap-list > li:last-child {
-    padding-bottom: 0;
-    border-left-color: transparent;
-  }
-
-  .roadmap-num {
+  .roadmap-list:not(.roadmap-linear) > li::before {
+    content: counter(step, decimal-leading-zero);
     position: absolute;
-    left: -1.25rem;
-    top: 0;
-    width: 2.5rem;
-    height: 2.5rem;
+    left: 0;
+    top: 1.05rem;
     display: grid;
     place-items: center;
-    border-radius: 50%;
-    background: var(--color-sky-soft);
-    border: 1px solid var(--color-sky-line);
-    color: var(--color-sky-ink);
-    font-weight: 800;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .roadmap-list > li:first-child .roadmap-num {
-    background: var(--color-sun);
-    border-color: var(--color-sun);
-    color: #fff;
+    width: 2.9rem;
+    height: 2.9rem;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-chip);
+    background: var(--color-acid);
+    color: var(--color-ink);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.9rem;
   }
 
   .roadmap-step h4 {
-    color: var(--color-ink);
+    margin: 0;
+    font-size: 1.05rem;
   }
 
   .roadmap-step p {
+    font-size: 0.95rem;
     color: var(--color-ink-soft);
-    font-size: 0.98rem;
+    margin: 0.25em 0 0;
   }
 
   .mini-project {
-    margin-top: 0.6rem;
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--color-sun-line);
-    border-radius: 10px;
-    background: var(--color-sun-soft);
-    color: var(--color-sun-deep);
-    font-size: 0.93rem;
-    max-width: 56ch;
+    margin-top: 0.7rem !important;
+    border: 2px solid var(--color-line-strong);
+    border-left: 5px solid var(--color-acid);
+    background: var(--color-acid-soft);
+    border-radius: 6px;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.9rem;
+    color: var(--color-ink-soft);
   }
 
-  /* ---- Roadmap: jalur linear (chips) ---- */
+  .mini-project strong {
+    color: var(--color-ink);
+  }
+
+  /* ---- Jalur serius: chip deret ---- */
   .roadmap-linear {
-    list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    padding: 0;
-    margin: 0;
+    gap: 0.6rem;
+    margin-top: 1.4rem;
   }
 
-  .roadmap-linear li {
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    border: 1px solid var(--color-sky-line);
-    background: var(--color-sky-soft);
-    color: var(--color-sky-ink);
+  .roadmap-linear > li {
+    border: 2px solid var(--color-ink);
+    border-radius: 6px;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    padding: 0.5rem 0.95rem;
     font-weight: 600;
     font-size: 0.94rem;
+    box-shadow: 2px 2px 0 var(--color-line-strong);
   }
 
   .roadmap-linear .roadmap-goal {
-    background: var(--color-sky);
-    border-color: var(--color-sky);
+    background: var(--color-blue);
     color: #fff;
+    border-color: var(--color-ink);
+    box-shadow: 3px 3px 0 var(--color-ink);
   }
 
   .roadmap-note {
-    margin-top: 0.9rem;
-    color: var(--color-ink-faint);
-    font-size: 0.92rem;
+    color: var(--color-ink-soft);
+    font-size: 0.93rem;
+    margin-top: 1.1rem;
   }
 
   .special-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0.6rem;
-    margin-top: 1rem;
+    gap: 0.7rem;
+    margin-top: 1.2rem;
   }
 
   .special-grid span {
+    border: 1.5px dashed var(--color-blue);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--color-blue-deep);
     padding: 0.6rem 0.8rem;
-    border: 1px solid var(--color-line);
-    border-radius: 10px;
-    background: var(--color-surface);
-    color: var(--color-ink-soft);
     font-size: 0.88rem;
     font-weight: 600;
+    text-align: center;
   }
 
-  /* ---- Badge ---- */
-  .badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.9rem;
-  }
-
-  .badge {
-    padding: 0.28rem 0.65rem;
-    border-radius: 999px;
-    font-size: 0.68rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border: 1px solid transparent;
-  }
-
-  .b-official {
-    background: var(--color-red-soft);
-    border-color: var(--color-red-line);
-    color: var(--color-red-deep);
-  }
-
-  .b-free {
-    background: var(--color-sky-soft);
-    border-color: var(--color-sky-line);
-    color: var(--color-sky-deep);
-  }
-
-  .b-hands {
-    background: var(--color-surface);
-    border-color: var(--color-line);
-    color: var(--color-ink-soft);
-  }
-
-  .b-newbie {
-    background: var(--color-sun-soft);
-    border-color: var(--color-sun-line);
-    color: var(--color-sun-deep);
-  }
-
-  /* ---- Link resource ---- */
-  .resource-link {
-    display: inline-block;
-    margin-top: 0.85rem;
-    font-weight: 600;
-    color: var(--color-sky);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  .resource-link:hover {
-    color: var(--color-sky-deep);
-  }
-
-  .resource-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.1rem;
-  }
-
-  .resource-card,
-  .cert-card,
-  .ai-card {
+  /* =====================================================================
+     Belajar: kartu resource + badge + link + note
+     ===================================================================== */
+  .resource-card {
     display: flex;
     flex-direction: column;
   }
 
-  .resource-card .resource-link,
-  .cert-card .resource-link {
-    margin-top: auto;
-    padding-top: 0.85rem;
+  .resource-card h4 {
+    margin: 0;
+    font-size: 1.05rem;
   }
 
-  /* ---- Catatan ---- */
-  .note-box {
-    margin-top: 1.6rem;
-    padding: 1.1rem 1.3rem;
-    border: 1px solid var(--color-sky-line);
-    border-radius: var(--radius-card);
-    background: var(--color-sky-soft);
-    color: var(--color-sky-ink);
-    max-width: 72ch;
+  .resource-card p {
+    flex: 1;
   }
 
-  .note-box strong {
-    color: var(--color-sky-deep);
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.85rem;
   }
 
-  .note-warn {
-    border-color: var(--color-red-line);
-    background: var(--color-red-soft);
-    color: #6b2020;
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid var(--color-ink);
+    border-radius: 3px;
+    padding: 0.28rem 0.6rem;
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
-  .note-warn strong {
-    color: var(--color-red-deep);
+  .badge.b-official {
+    background: var(--color-blue-soft);
+    color: var(--color-blue-deep);
   }
 
-  .note-warn em {
-    font-style: italic;
-    font-size: 0.92rem;
+  .badge.b-free {
+    background: var(--color-acid);
+    color: var(--color-ink);
   }
 
-  /* ---- Sertifikasi ---- */
+  .badge.b-hands {
+    background: var(--color-orange-soft);
+    color: var(--color-ink);
+  }
+
+  .badge.b-newbie {
+    background: var(--color-paper);
+    color: var(--color-ink-soft);
+  }
+
+  .resource-link {
+    align-self: flex-start;
+    margin-top: 0.8rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-blue-deep);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.2em;
+  }
+
+  .resource-link:hover {
+    color: var(--color-ink);
+    background: var(--color-acid);
+  }
+
+  /* =====================================================================
+     Sertifikasi: group + grid + decision tree + note
+     ===================================================================== */
   .cert-group {
     margin-top: 1.6rem;
   }
 
-  .cert-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.1rem;
+  .cert-grid .block-title {
+    grid-column: 1 / -1;
   }
 
-  .cert-card p {
-    font-size: 0.96rem;
+  .cert-card h4 {
+    margin: 0;
+    font-size: 1.03rem;
   }
 
-  /* ---- Pohon keputusan ---- */
   .decision-tree {
-    display: grid;
+    margin-top: 1.4rem;
+    border: 2px solid var(--color-ink);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+    box-shadow: var(--shadow-brutal-sm);
   }
 
   .decision-row {
     display: grid;
-    grid-template-columns: 1.1fr 2fr;
-    gap: 1.2rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--color-line);
+    grid-template-columns: minmax(0, 1fr) 1.7fr;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--color-line-strong);
   }
 
-  .decision-row:last-child {
-    border-bottom: 0;
+  .decision-row:first-child {
+    border-top: 0;
   }
 
   .decision-q {
+    margin: 0;
+    font-family: var(--font-display);
     font-weight: 700;
+    font-size: 1rem;
     color: var(--color-ink);
   }
 
   .decision-a {
+    margin: 0;
     color: var(--color-ink-soft);
-    font-size: 0.98rem;
+    font-size: 0.97rem;
   }
 
-  /* ---- Split outlook ---- */
+  /* =====================================================================
+     AI: grid + check-list + workflow
+     ===================================================================== */
+  .ai-grid,
   .split {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.1rem;
+    gap: 1.25rem;
+    margin-top: 1.3rem;
   }
 
-  .card-outlook p {
-    font-size: 0.97rem;
-    margin-top: 0.6rem;
+  .ai-card h3 {
+    margin: 0;
+    font-size: 1.08rem;
+    color: var(--color-blue-deep);
   }
 
-  .source-note {
-    margin-top: 0.9rem;
-    font-size: 0.85rem;
-    color: var(--color-ink-faint);
-    font-style: italic;
-  }
-
-  /* ---- Check list ---- */
   .check-list {
     list-style: none;
     padding: 0;
+    margin-top: 1rem;
     display: grid;
     gap: 0.55rem;
-    margin-top: 1rem;
-    max-width: 60ch;
   }
 
   .check-list li {
     position: relative;
-    padding-left: 1.8rem;
+    padding-left: 1.6em;
     color: var(--color-ink-soft);
   }
 
@@ -883,118 +974,124 @@
     content: "";
     position: absolute;
     left: 0;
-    top: 0.32em;
-    width: 1em;
-    height: 1em;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5 6.5 12 13 4.5' fill='none' stroke='%230369a1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    top: 0.18em;
+    width: 1.1em;
+    height: 1.1em;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m2.5 8.5 3.5 3.5 7.5-8' fill='none' stroke='%230057ff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
   }
 
-  /* ---- AI & workflow ---- */
-  .ai-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.1rem;
-    margin-top: 1.4rem;
-  }
-
-  .ai-card h3 {
-    margin-bottom: 0.25rem;
-  }
-
   .workflow-box {
-    margin-top: 1.4rem;
-    padding: 1.1rem 1.3rem;
-    border: 1px solid var(--color-sky-line);
-    border-radius: var(--radius-card);
-    background: var(--color-sky-soft);
-    color: var(--color-sky-ink);
-    font-weight: 500;
-    max-width: 76ch;
+    margin-top: 1.5rem;
+    border: 2px dashed var(--color-blue);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.55);
+    padding: 1.15rem 1.3rem;
+    color: var(--color-ink-soft);
+    font-weight: 600;
+  }
+
+  .workflow-box p {
+    margin: 0;
+    max-width: none;
   }
 
   .workflow-box span {
-    color: var(--color-sky);
     display: inline-flex;
-    vertical-align: middle;
-    margin-inline: 0.35rem;
+    align-items: center;
+    color: var(--color-blue);
+    vertical-align: -0.12em;
   }
 
-  /* ---- Kuis ---- */
+  /* =====================================================================
+     Quiz
+     ===================================================================== */
   .quiz-form {
     display: grid;
-    gap: 1.5rem;
-    margin-top: 1.8rem;
+    gap: 1rem;
+    margin-top: 1.6rem;
   }
 
   .quiz-item {
-    border: 0;
-    padding: 0;
-    margin: 0;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.7rem;
+    border: 2px solid var(--color-ink);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.55);
+    padding: 1rem 1.15rem;
+    box-shadow: 2px 2px 0 var(--color-line-strong);
+    margin: 0;
   }
 
   .quiz-item legend {
-    width: 100%;
+    font-family: var(--font-display);
     font-weight: 700;
+    font-size: 1rem;
     color: var(--color-ink);
-    margin-bottom: 0.5rem;
+    padding-inline: 0.3rem;
   }
 
   .quiz-item label {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--color-line);
+    gap: 0.45rem;
+    border: 2px solid var(--color-ink);
     border-radius: 999px;
-    background: var(--color-surface);
-    color: var(--color-ink-soft);
-    font-weight: 500;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    padding: 0.4rem 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
     cursor: pointer;
-    transition: background-color 0.16s ease, border-color 0.16s ease,
-      color 0.16s ease;
+    transition: background-color 0.14s ease, color 0.14s ease;
   }
 
   .quiz-item label:hover {
-    border-color: var(--color-sky-line);
+    background: var(--color-blue-soft);
   }
 
   .quiz-item label:has(input:checked) {
-    background: var(--color-sun-soft);
-    border-color: var(--color-sun-line);
-    color: var(--color-sun-deep);
-    font-weight: 700;
+    background: var(--color-ink);
+    color: var(--color-paper);
   }
 
   .quiz-item input[type="radio"] {
-    accent-color: var(--color-sky);
+    accent-color: var(--color-blue);
     width: 1.05em;
     height: 1.05em;
+    margin: 0;
+  }
+
+  .quiz-form .btn {
+    justify-self: start;
   }
 
   .quiz-result {
     margin-top: 1.4rem;
-    padding: 1.15rem 1.3rem;
-    border: 1px solid var(--color-sky-line);
-    border-radius: var(--radius-card);
-    background: var(--color-sky-soft);
-    color: var(--color-sky-ink);
+    border: 2px solid var(--color-ink);
+    border-left: 6px solid var(--color-blue);
+    border-radius: 10px;
+    background: var(--color-blue-soft);
+    color: var(--color-ink);
     font-weight: 600;
+    padding: 1.1rem 1.3rem;
+    box-shadow: var(--shadow-brutal-sm);
     max-width: 60ch;
   }
 
-  /* ---- Detail progresif (progressive) ---- */
+  /* =====================================================================
+     Progressive (detail bertahap) — mekanik details sama
+     ===================================================================== */
   .progressive {
     margin-top: 1.8rem;
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-card);
-    background: var(--color-surface);
+    border: 2px solid var(--color-ink);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: var(--shadow-brutal-sm);
     overflow: hidden;
   }
 
@@ -1005,7 +1102,9 @@
     gap: 1rem;
     padding: 1.1rem 1.3rem;
     cursor: pointer;
+    font-family: var(--font-display);
     font-weight: 700;
+    font-size: 1.02rem;
     color: var(--color-ink);
     list-style: none;
   }
@@ -1019,7 +1118,7 @@
     flex: none;
     width: 1.15em;
     height: 1.15em;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 2.5v11M2.5 8h11' fill='none' stroke='%230369a1' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 2.5v11M2.5 8h11' fill='none' stroke='%23161616' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -1030,8 +1129,12 @@
     transform: rotate(45deg);
   }
 
+  .progressive[open] summary {
+    border-bottom: 2px solid var(--color-acid);
+  }
+
   .progressive-body {
-    padding: 0 1.3rem 1.3rem;
+    padding: 1.2rem 1.3rem 1.3rem;
   }
 
   .mini-grid {
@@ -1041,29 +1144,49 @@
     margin-bottom: 0.9rem;
   }
 
+  .mini-grid:last-child {
+    margin-bottom: 0;
+  }
+
   .mini-card {
-    border: 1px solid var(--color-line);
-    border-radius: 12px;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 10px;
     padding: 1rem;
-    background: var(--color-surface);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.85),
+      rgba(255, 255, 255, 0.6)
+    );
   }
 
   .mini-card h4 {
     margin-bottom: 0.3rem;
+    font-size: 0.98rem;
   }
 
   .mini-card p {
     color: var(--color-ink-soft);
-    font-size: 0.92rem;
+    font-size: 0.9rem;
   }
 
-  /* ---- FAQ ---- */
+  /* =====================================================================
+     FAQ — mekanik details sama
+     ===================================================================== */
   .faq-list {
-    margin-top: 1.5rem;
+    margin-top: 1.6rem;
+    display: grid;
+    gap: 0.85rem;
   }
 
   .faq-item {
-    border-bottom: 1px solid var(--color-line);
+    border: 2px solid var(--color-line-strong);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.55);
+    transition: border-color 0.18s ease;
+  }
+
+  .faq-item[open] {
+    border-color: var(--color-blue);
   }
 
   .faq-item summary {
@@ -1071,9 +1194,11 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1.1rem 0.2rem;
+    padding: 1.1rem 1.25rem;
     cursor: pointer;
+    font-family: var(--font-display);
     font-weight: 700;
+    font-size: 1rem;
     color: var(--color-ink);
     list-style: none;
   }
@@ -1083,7 +1208,7 @@
   }
 
   .faq-item summary:hover {
-    color: var(--color-sky-deep);
+    color: var(--color-blue-deep);
   }
 
   .faq-item summary::after {
@@ -1091,7 +1216,7 @@
     flex: none;
     width: 1.1em;
     height: 1.1em;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 2.5v11M2.5 8h11' fill='none' stroke='%230369a1' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 2.5v11M2.5 8h11' fill='none' stroke='%23161616' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -1103,60 +1228,110 @@
   }
 
   .faq-item[open] summary {
-    color: var(--color-sky-deep);
+    color: var(--color-blue-deep);
   }
 
   .faq-item p {
-    padding: 0 0.2rem 1.2rem;
+    padding: 0 1.25rem 1.2rem;
     color: var(--color-ink-soft);
-    font-size: 0.98rem;
+    font-size: 0.97rem;
+    margin: 0;
   }
 
-  /* ---- CTA (pintu kelas) ---- */
+  /* =====================================================================
+     CTA — poster biru (punggung panel)
+     ===================================================================== */
+  .cta-section {
+    position: relative;
+    padding-bottom: clamp(3rem, 7vw, 5rem);
+  }
+
   .cta-box {
-    background: var(--color-sky-deep);
-    border-radius: 18px;
-    padding: clamp(2.2rem, 6vw, 3.6rem);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      160deg,
+      var(--color-blue) 0%,
+      var(--color-blue-deep) 100%
+    );
+    border: 3px solid var(--color-ink);
+    border-radius: 6px;
+    box-shadow: var(--shadow-brutal);
+    padding: clamp(2.4rem, 6vw, 3.8rem);
     text-align: center;
+  }
+
+  .cta-box::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 8px;
+    background: var(--color-acid);
+  }
+
+  .cta-box::after {
+    content: "+";
+    position: absolute;
+    top: 0.55rem;
+    right: 0.9rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
   }
 
   .cta-box h2 {
     color: #fff;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-box h2::after {
+    margin-inline: auto;
+    background: var(--color-acid);
+    border-color: var(--color-ink);
   }
 
   .cta-box p {
     margin: 0.9rem auto 0;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.9);
     max-width: 52ch;
   }
 
   .cta-box .hero-cta {
     justify-content: center;
-    margin-top: 1.8rem;
+    margin-top: 1.9rem;
   }
 
   .cta-box .btn-primary {
-    background: #fff;
-    color: var(--color-sky-deep);
-    border-color: #fff;
+    background: var(--color-acid);
+    color: var(--color-ink);
+    border-color: var(--color-ink);
+    box-shadow: 4px 4px 0 var(--color-ink);
   }
 
   .cta-box .btn-primary:hover {
-    background: var(--color-sky-soft);
-    color: var(--color-sky-deep);
+    background: #fff;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--color-ink);
   }
 
   .cta-box .btn-outline {
-    border-color: rgba(255, 255, 255, 0.9);
+    border-color: #fff;
     color: #fff;
+    background: transparent;
+    box-shadow: none;
   }
 
   .cta-box .btn-outline:hover {
-    background: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.16);
     color: #fff;
+    transform: none;
+    box-shadow: none;
   }
 
-  /* ---- Sumber ---- */
+  /* =====================================================================
+     Sumber
+     ===================================================================== */
   .source-list {
     list-style: none;
     padding: 0;
@@ -1164,90 +1339,128 @@
   }
 
   .source-list li {
-    padding: 0.7rem 0;
+    padding: 0.7rem 0.25rem;
     border-bottom: 1px solid var(--color-line);
     color: var(--color-ink-soft);
     font-size: 0.95rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 0.6rem;
   }
 
   .source-list li:last-child {
     border-bottom: 0;
   }
 
-  /* ---- Tombol ---- */
+  .source-list a {
+    color: var(--color-blue-deep);
+    font-weight: 600;
+    word-break: break-all;
+  }
+
+  /* =====================================================================
+     Tombol — brutal: garis 2px + bayangan offset
+     ===================================================================== */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.75rem 1.4rem;
-    border-radius: 12px;
-    font: inherit;
-    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-chip);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
     text-decoration: none;
-    border: 1.5px solid transparent;
     cursor: pointer;
-    transition: background-color 0.16s ease, border-color 0.16s ease,
-      transform 0.16s ease;
+    transition: background-color 0.12s ease, color 0.12s ease,
+      transform 0.12s ease, box-shadow 0.12s ease;
   }
 
   .btn-primary {
-    background: var(--color-sky);
-    color: #fff;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    box-shadow: var(--shadow-brutal);
   }
 
   .btn-primary:hover {
-    background: var(--color-sky-deep);
+    background: var(--color-blue);
     color: #fff;
+    transform: translate(2px, 2px);
+    box-shadow: var(--shadow-brutal-sm);
   }
 
   .btn-outline {
-    border-color: var(--color-sky);
-    color: var(--color-sky);
-    background: transparent;
+    background: rgba(255, 255, 255, 0.35);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-brutal-sm);
   }
 
   .btn-outline:hover {
-    background: var(--color-sky-soft);
-    color: var(--color-sky-deep);
+    background: var(--color-acid);
+    color: var(--color-ink);
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--color-ink);
   }
 
   .btn-lg {
-    padding: 0.9rem 1.7rem;
+    padding: 0.95rem 1.8rem;
     font-size: 1.1rem;
   }
 
-  /* ---- Flow diagram hero ---- */
+  /* =====================================================================
+     Hero flow — panel kaca dengan frame dashed biru
+     ===================================================================== */
   .hero-flow {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 0.55rem 0.9rem;
-    background: var(--color-surface);
-    border: 1px solid var(--color-sky-line);
-    border-radius: var(--radius-card);
-    padding: 1.15rem;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-glass);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.78),
+      rgba(255, 255, 255, 0.4)
+    );
+    -webkit-backdrop-filter: blur(20px) saturate(170%);
+    backdrop-filter: blur(20px) saturate(170%);
+    box-shadow: var(--shadow-glass), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    padding: 1.4rem;
+  }
+
+  .hero-flow::before {
+    content: "";
+    position: absolute;
+    inset: 0.5rem;
+    border: 1.5px dashed var(--color-blue);
+    border-radius: 14px;
+    pointer-events: none;
   }
 
   .flow-node {
-    padding: 0.55rem 1.1rem;
-    border-radius: 999px;
-    border: 1px solid var(--color-sky-line);
-    background: var(--color-sky-soft);
-    color: var(--color-sky-ink);
-    font-weight: 600;
-    font-size: 0.98rem;
+    padding: 0.6rem 1.15rem;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-chip);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-weight: 700;
+    font-size: 0.97rem;
     white-space: nowrap;
+    box-shadow: 2px 2px 0 var(--color-line-strong);
   }
 
   .flow-node[data-accent] {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
-    background: var(--color-sky);
-    border-color: var(--color-sky);
+    background: var(--color-blue);
+    border-color: var(--color-ink);
     color: #fff;
+    box-shadow: 3px 3px 0 var(--color-ink);
   }
 
   .flow-flag {
@@ -1258,25 +1471,38 @@
   .flow-arrow {
     display: inline-flex;
     align-items: center;
-    color: var(--color-sky-mid);
+    color: var(--color-blue);
     flex: none;
   }
 
   .flow-caption {
     grid-column: 1 / -1;
     text-align: center;
+    font-family: var(--font-mono);
     font-size: 0.78rem;
     font-weight: 700;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--color-ink-faint);
   }
 
-  /* ---- Footer ---- */
+  /* =====================================================================
+     Footer — bidang tinta dengan border asam
+     ===================================================================== */
   .site-footer {
-    border-top: 1px solid var(--color-line);
-    padding-block: 2.4rem;
+    border-top: 6px solid var(--color-acid);
+    background: var(--color-ink);
+    color: var(--color-paper);
+    padding-block: 2.5rem;
     margin-top: 1rem;
+  }
+
+  .site-footer a {
+    color: var(--color-paper);
+  }
+
+  .site-footer a:hover {
+    color: var(--color-acid);
   }
 
   .footer-inner {
@@ -1288,52 +1514,71 @@
   }
 
   .footer-inner .brand-text {
-    font-weight: 800;
-    color: var(--color-ink);
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--color-paper);
   }
 
   .footer-inner .brand-text strong {
-    color: var(--color-sky);
+    color: var(--color-acid);
   }
 
   .footer-note {
-    color: var(--color-ink-faint);
+    margin: 0;
+    color: rgba(244, 243, 239, 0.78);
     font-size: 0.9rem;
   }
 }
 
-/* ---------- Hero (first viewport) ---------- */
+/* =====================================================================
+   Hero — panel operasi (first viewport)
+   ===================================================================== */
 @layer components {
   .hero {
     position: relative;
     overflow: hidden;
-    padding-block: clamp(3.5rem, 9vw, 6rem) clamp(2.5rem, 6vw, 4rem);
+    background: radial-gradient(
+        60rem 30rem at 88% -12%,
+        rgba(0, 87, 255, 0.14),
+        transparent 60%
+      ),
+      radial-gradient(
+        46rem 26rem at -6% 110%,
+        rgba(255, 77, 0, 0.1),
+        transparent 58%
+      ),
+      var(--color-paper);
+    color: var(--color-ink);
+    padding-block: clamp(4.5rem, 10vw, 7rem) clamp(2.5rem, 6vw, 4rem);
+    border-bottom: 2px solid var(--color-ink);
   }
 
+  /* Tanda registrasi sudut (motif teknis Swiss) */
   .hero::before {
-    content: "";
+    content: "+";
     position: absolute;
-    inset: 0 0 auto 0;
-    height: clamp(220px, 34vw, 340px);
-    background:
-      radial-gradient(circle at 84% 24%, #fcd34d 0 26px, rgba(252, 211, 77, 0) 27px),
-      linear-gradient(180deg, var(--color-sky-mid) 0%, var(--color-sky-soft) 52%, rgba(234, 244, 251, 0) 100%);
+    top: 0.85rem;
+    right: 1.05rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    line-height: 1;
+    color: var(--color-blue);
     pointer-events: none;
   }
 
   .hero::after {
-    content: "";
+    content: "+";
     position: absolute;
-    top: -24%;
-    right: -6%;
-    width: 46%;
-    height: 130%;
-    background: linear-gradient(115deg,
-      rgba(255, 255, 255, 0) 44%,
-      rgba(255, 255, 255, 0.55) 50%,
-      rgba(255, 255, 255, 0) 56%
-    );
-    transform: rotate(6deg);
+    bottom: 0.85rem;
+    left: 1.05rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    line-height: 1;
+    color: var(--color-orange);
     pointer-events: none;
   }
 
@@ -1351,18 +1596,49 @@
     position: relative;
   }
 
+  .hero h1 {
+    margin: 0;
+    color: var(--color-ink);
+    font-size: clamp(2.5rem, 5.6vw, 4.3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
   .hero-sub {
-    margin-top: 1.15rem;
+    margin-top: 1.2rem;
     color: var(--color-ink-soft);
-    font-size: clamp(1.08rem, 1.6vw, 1.28rem);
-    line-height: 1.55;
+    font-size: clamp(1.08rem, 1.7vw, 1.3rem);
+    line-height: 1.58;
+    max-width: 46ch;
   }
 
   .hero-cta {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-top: 1.8rem;
+    gap: 0.9rem;
+    margin-top: 1.9rem;
+  }
+
+  .hero :focus-visible {
+    outline-color: var(--color-blue);
+  }
+
+  /* Tombol hero memakai gaya brutal global; hanya pastikan warna teks */
+  .hero .btn-primary {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .hero .btn-primary:hover {
+    background: var(--color-blue);
+    color: #fff;
+  }
+
+  .hero .btn-outline {
+    background: rgba(255, 255, 255, 0.4);
+    color: var(--color-ink);
   }
 }
 
@@ -1386,9 +1662,38 @@
   }
 }
 
-/* ---------- Scroll reveal (IntersectionObserver, transform/opacity saja) ----------
-   Aturan aktif saat JS tersedia (kelas "js" dari RevealObserver). Semua gerak
-   via transform + opacity (GPU), animasi berjalan sekali lalu berhenti. */
+/* ---------- Alur data mengalir (panel hero) ----------
+   Gerak halus pada panah diagram: menyampaikan arah alur tanpa
+   mengganggu pembacaan teks. */
+.hero-flow .flow-arrow {
+  animation: flow-glow 2.4s ease-in-out infinite;
+}
+
+.hero-flow .flow-arrow:nth-of-type(2) {
+  animation-delay: 0.6s;
+}
+
+.hero-flow .flow-arrow:nth-of-type(3) {
+  animation-delay: 1.2s;
+}
+
+@keyframes flow-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(3px);
+  }
+}
+
+/* =====================================================================
+   Scroll reveal (IntersectionObserver, transform/opacity saja)
+   Aturan aktif saat JS tersedia (kelas "js" dari RevealObserver).
+   Tanpa JS: konten tetap terlihat normal.
+   ===================================================================== */
 .js [data-reveal],
 .js [data-reveal-grid] > * {
   opacity: 0;
@@ -1445,33 +1750,6 @@
   transition-delay: 400ms;
 }
 
-/* ---------- Alur data mengalir (hero) ----------
-   Gerak halus pada panah diagram: menyampaikan arah alur (perangkat ->
-   internet -> cloud -> aplikasi) tanpa mengganggu pembacaan teks. */
-.hero-flow .flow-arrow {
-  animation: flow-glow 2.4s ease-in-out infinite;
-}
-
-.hero-flow .flow-arrow:nth-of-type(2) {
-  animation-delay: 0.6s;
-}
-
-.hero-flow .flow-arrow:nth-of-type(3) {
-  animation-delay: 1.2s;
-}
-
-@keyframes flow-glow {
-  0%,
-  100% {
-    opacity: 0.5;
-    transform: translateX(0);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(3px);
-  }
-}
-
 /* Saat mencetak, semua konten harus tetap terlihat */
 @media print {
   .js [data-reveal],
@@ -1481,15 +1759,22 @@
   }
 }
 
-/* ---------- Responsif ---------- */
+/* =====================================================================
+   Responsif
+   ===================================================================== */
 @media (max-width: 960px) {
+  html {
+    scroll-padding-top: 5.5rem;
+  }
+
   .hero-grid {
     grid-template-columns: 1fr;
   }
 
   .grid-3,
   .grid-6,
-  .cert-grid {
+  .cert-grid,
+  .resource-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1509,14 +1794,6 @@
 }
 
 @media (max-width: 640px) {
-  html {
-    scroll-padding-top: 5.5rem;
-  }
-
-  body {
-    font-size: 1rem;
-  }
-
   .nav-inner {
     padding-block: 0.7rem;
   }
@@ -1525,22 +1802,23 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.75rem;
-    height: 2.75rem;
-    border: 1px solid var(--color-line);
-    border-radius: 10px;
-    background: var(--color-surface);
-    color: var(--color-ink-soft);
+    width: 2.85rem;
+    height: 2.85rem;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-chip);
+    background: var(--color-paper);
+    color: var(--color-ink);
     cursor: pointer;
+    box-shadow: 2px 2px 0 var(--color-line-strong);
   }
 
   .nav-toggle-btn:hover {
-    border-color: var(--color-sky-line);
-    color: var(--color-sky);
+    background: var(--color-acid);
+    color: var(--color-ink);
   }
 
   #nav-toggle:focus-visible ~ .nav-toggle-btn {
-    outline: 2px solid var(--color-sky);
+    outline: 3px solid var(--color-blue);
     outline-offset: 2px;
   }
 
@@ -1562,14 +1840,16 @@
     left: 0;
     right: 0;
     z-index: 60;
+    margin: 0;
     flex-direction: column;
     align-items: stretch;
     gap: 0.15rem;
-    margin: 0;
-    padding: 0.6rem 1.25rem 0.9rem;
-    background: var(--color-paper);
-    border-bottom: 1px solid var(--color-sky-line);
-    box-shadow: var(--shadow-nav);
+    padding: 0.5rem 1.25rem 0.85rem;
+    background: rgba(244, 243, 239, 0.92);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    border-bottom: 3px solid var(--color-ink);
+    box-shadow: 0 12px 30px rgba(22, 22, 22, 0.18);
     display: none;
   }
 
@@ -1578,23 +1858,24 @@
   }
 
   .nav-links a {
-    font-size: 1rem;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
-    min-height: 2.75rem;
+    min-height: 2.85rem;
     padding-inline: 0.75rem;
-    border-radius: 10px;
+    border-radius: var(--radius-chip);
   }
 
   .nav-links a:hover {
-    background: var(--color-sky-soft);
-    color: var(--color-sky-deep);
+    background: var(--color-acid);
+    color: var(--color-ink);
     text-decoration: none;
   }
 
   .grid-3,
   .grid-6,
-  .cert-grid {
+  .cert-grid,
+  .resource-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1613,8 +1894,22 @@
   }
 
   .work-num,
-  .start-num {
-    font-size: 1.6rem;
+  .start-num,
+  .tree-badge {
+    width: 2.6rem;
+    height: 2.6rem;
+    font-size: 1rem;
+  }
+
+  .roadmap-list:not(.roadmap-linear) > li {
+    padding-left: 3.2rem;
+  }
+
+  .roadmap-list:not(.roadmap-linear) > li::before {
+    width: 2.5rem;
+    height: 2.5rem;
+    top: 0.95rem;
+    font-size: 0.82rem;
   }
 
   .hero-flow {
@@ -1627,23 +1922,9 @@
     padding: 0.5rem 0.9rem;
   }
 
-  .roadmap-list > li {
-    padding-left: 3.1rem;
-  }
-
-  .roadmap-num {
-    left: -1.15rem;
-    width: 2.3rem;
-    height: 2.3rem;
-  }
-
-  .timeline li {
-    gap: 0.8rem;
-  }
-
   .badge {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.7rem;
+    font-size: 0.7rem;
+    padding: 0.26rem 0.55rem;
   }
 
   .quiz-item {
@@ -1651,7 +1932,12 @@
   }
 
   .quiz-item label {
-    padding: 0.65rem 1.05rem;
+    padding: 0.4rem 0.95rem;
+  }
+
+  .timeline li {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
   }
 
   .cta-box .hero-cta {
@@ -1665,7 +1951,9 @@
   }
 }
 
-/* ---------- Cetak: kertas putih, tinta hitam ---------- */
+/* =====================================================================
+   Cetak: kertas putih, tinta hitam
+   ===================================================================== */
 @media print {
   body {
     background: #fff;
@@ -1685,7 +1973,40 @@
   }
 
   .hero {
+    background: none;
+    color: #000;
+    border-bottom: 0;
     padding: 0;
+  }
+
+  .hero h1,
+  .hero-sub,
+  .flow-caption {
+    color: #000;
+  }
+
+  #cloud h2::before,
+  #kerja h2::before,
+  #kenapa h2::before,
+  #skill h2::before,
+  #mulai h2::before,
+  #roadmap h2::before,
+  #belajar h2::before,
+  #sertifikasi h2::before,
+  #peluang h2::before,
+  #ai h2::before {
+    color: #000;
+    background: #fff;
+    border-color: #999;
+    box-shadow: none;
+  }
+
+  .section h2::after {
+    background: #000;
+  }
+
+  .cta-box h2::after {
+    margin-inline: auto;
   }
 
   .section {
@@ -1704,33 +2025,79 @@
   .note-box,
   .note-warn,
   .workflow-box,
-  .special-grid span {
+  .special-grid span,
+  .decision-tree,
+  .badge,
+  .quiz-result,
+  .tree-level,
+  .roadmap-linear li,
+  .progressive,
+  .faq-item,
+  .tab-panel {
     background: #fff;
     border-color: #999;
+    box-shadow: none;
+  }
+
+  .badge {
+    border-style: solid;
   }
 
   a {
     color: #000;
   }
 
-  .skill-tree::before {
-    background: #999;
+  .check-list li::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m2.5 8.5 3.5 3.5 7.5-8' fill='none' stroke='%23000000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   }
 
-  .tree-badge,
-  .roadmap-num {
+  .tree-level {
+    border-left-color: #999;
+  }
+
+  .tree-badge {
     background: #fff;
     color: #000;
     border-color: #999;
+    box-shadow: none;
   }
 
   .tree-level:first-child .tree-badge,
-  .roadmap-list > li:first-child .roadmap-num,
   .roadmap-linear .roadmap-goal,
   .tab-labels label,
-  .btn-primary {
+  .btn-primary,
+  .start-num,
+  .work-num {
     background: #fff;
     color: #000;
+    border-color: #999;
+    box-shadow: none;
+  }
+
+  #tab-smp:checked ~ .tab-labels label[for="tab-smp"],
+  #tab-serius:checked ~ .tab-labels label[for="tab-serius"] {
+    background: #fff;
+    color: #000;
+    border-color: #999;
+    transform: none;
+  }
+
+  .btn-outline {
+    border-color: #999;
+    color: #000;
+    box-shadow: none;
+  }
+
+  .industry-tags li,
+  .roadmap-list:not(.roadmap-linear) > li::before {
+    background: #fff;
+    color: #000;
+    border-color: #999;
+    box-shadow: none;
+  }
+
+  .mini-project {
+    background: #fff;
     border-color: #999;
   }
 }

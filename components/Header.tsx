@@ -35,10 +35,10 @@ export default function Header() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <rect x="1" y="1" width="22" height="22" rx="6" fill="#0369A1" />
-              <circle cx="17.5" cy="5.5" r="2.4" fill="#FBBF24" />
-              <rect x="5.5" y="4" width="2" height="16" rx="1" fill="#1C2B3A" />
-              <rect x="7.5" y="5.5" width="10" height="4.6" fill="#DC2626" />
+              <rect x="1" y="1" width="22" height="22" rx="6" fill="#0057FF" />
+              <circle cx="17.5" cy="5.5" r="2.4" fill="#FF4D00" />
+              <rect x="5.5" y="4" width="2" height="16" rx="1" fill="#161616" />
+              <rect x="7.5" y="5.5" width="10" height="4.6" fill="#E63312" />
               <rect x="7.5" y="10.1" width="10" height="4.6" fill="#FFFFFF" />
             </svg>
           </span>

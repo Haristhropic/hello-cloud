@@ -187,8 +187,8 @@ export function FlagIcon({ className = "" }: { className?: string }) {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <rect x="3" y="1.5" width="1.8" height="13" rx="0.9" fill="#1B2A38" />
-        <rect x="4.8" y="2.5" width="7.6" height="3.2" fill="#DC2626" />
+        <rect x="3" y="1.5" width="1.8" height="13" rx="0.9" fill="#161616" />
+        <rect x="4.8" y="2.5" width="7.6" height="3.2" fill="#E63312" />
         <rect x="4.8" y="5.7" width="7.6" height="3.2" fill="#FFFFFF" />
       </svg>
     </span>
