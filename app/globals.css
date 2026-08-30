@@ -463,12 +463,13 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    gap: 0.55rem;
   }
 
   .skill-tree::before {
     content: "";
     position: absolute;
-    left: 1.7rem;
+    left: calc(1.15rem + 1.7rem);
     top: 1.8rem;
     bottom: 1.8rem;
     width: 1px;
@@ -481,8 +482,10 @@
     grid-template-columns: 3.4rem 1fr;
     gap: 1.15rem;
     align-items: center;
-    padding: 0.85rem 0;
-    background: var(--color-paper);
+    background: var(--color-surface);
+    border: 1px solid var(--color-sky-line);
+    border-radius: var(--radius-card);
+    padding: 1rem 1.15rem;
   }
 
   .tree-badge {
