@@ -1110,10 +1110,6 @@
   }
 
   /* ---- CTA (pintu kelas) ---- */
-  .cta-section {
-    padding-top: 0;
-  }
-
   .cta-box {
     background: var(--color-sky-deep);
     border-radius: 18px;
@@ -1653,6 +1649,16 @@
 
   .quiz-item label {
     padding: 0.65rem 1.05rem;
+  }
+
+  .cta-box .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta-box .hero-cta .btn {
+    width: 100%;
+    padding-inline: 1.2rem;
   }
 }
 
