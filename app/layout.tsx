@@ -8,13 +8,13 @@ import RevealObserver from "@/components/RevealObserver";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600", "700"],
 });
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -45,37 +45,24 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body>
-        {/* Direction contract disuntikkan sebagai HTML comment (bukan komentar
-            JSX) agar survive production build dan bisa di-grep untuk seed key. */}
-        <div
-          aria-hidden="true"
-          style={{ display: "none" }}
-          dangerouslySetInnerHTML={{
-            __html: `<!--
-DIRECTION CONTRACT — "Swiss Cloud Panel" (IMPECCABLE PICK)
-THESIS: Papan operasi cloud bernuansa neo-brutalist Swiss:
-grid presisi, garis hitam tegas, blok warna datar, tipografi
-grotesk geometris — tetapi materialnya liquid glass: panel
-kaca buram dengan backdrop blur, highlight dalam tipis, sheen.
-OWN-WORLD: kertas #f4f3ef, tinta struktural #161616, biru
-sinyal #0057ff, asam #d7f32e, jingga termal #ff4d00; nomor
-modul, tanda registrasi, bayangan offset keras; tanpa emoji,
-tanpa mode gelap menyeluruh, tanpa motif buku sekolah.
-STORY: Pengunjung memegang "panel kendali cloud": dari
-"apa itu cloud" sampai "siap kerja", gulir sebagai inspeksi
-modul demi modul; setiap isi disajikan dalam panel kaca yang
-melayang di atas bidang warna.
-FIRST VIEWPORT: panel operasi: judul display raksasa di
-kertas, tanda registrasi sudut, diagram alur dalam panel
-kaca, CTA bertinta tegas dengan shadow offset.
-FORM: Neo-Brutalist Swiss Grid + Liquid Glass, seed c7d1902a.
-FINISH: unreviewed and undocumented is unfinished; this build
-ends with the finish review, the verdict, DESIGN.md, and every
-shipping raster carrying its provenance.
--->`,
-          }}
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=devices,wifi,cloud,apps&display=block"
+          rel="stylesheet"
+        />
+        {/* Netralkan default ukuran font Google (24px) yang berada di luar
+            cascade layer, agar aturan station-icon di globals.css menang. */}
+        <style>{`.material-symbols-outlined { font-size: inherit; }
+        .station-glyph .station-icon { font-size: 2.8rem; }
+        .flow-station.is-cloud .station-glyph .station-icon { font-size: 3.1rem; }`}</style>
+      </head>
+      <body>
         <a className="skip-link" href="#main">
           Langsung ke konten utama
         </a>

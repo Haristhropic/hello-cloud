@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const NAV_LINKS = [
   { href: "#cloud", label: "Kenalan" },
@@ -15,6 +15,29 @@ const NAV_LINKS = [
 
 export default function Header() {
   const navToggleRef = useRef<HTMLInputElement>(null);
+  const [active, setActive] = useState("");
+
+  useEffect(() => {
+    const ids = NAV_LINKS.map((link) => link.href.slice(1));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActive(`#${entry.target.id}`);
+          }
+        }
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+    );
+
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   function closeOnLinkClick(event: React.MouseEvent<HTMLElement>) {
     const toggle = navToggleRef.current;
@@ -87,7 +110,12 @@ export default function Header() {
         </label>
         <nav className="nav-links" aria-label="Navigasi utama" onClick={closeOnLinkClick}>
           {NAV_LINKS.map((link) => (
-            <a key={link.href} href={link.href}>
+            <a
+              key={link.href}
+              href={link.href}
+              className={active === link.href ? "active" : undefined}
+              aria-current={active === link.href ? "location" : undefined}
+            >
               {link.label}
             </a>
           ))}

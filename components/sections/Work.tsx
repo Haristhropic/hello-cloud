@@ -9,6 +9,19 @@ export default function Work() {
           stabil, cepat, dan berkembang.
         </p>
 
+        <div className="section-photo-card" data-reveal>
+          <div className="photo-frame">
+            <img
+              src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80"
+              alt="Suasana kerja santai seorang engineer di depan layar"
+              loading="lazy"
+            />
+          </div>
+          <p className="photo-caption">
+            <span>[KASUS NYATA]</span> Suasana kerja sehari-hari: santai, fokus pada problem solving, tanpa harus mengenakan jas formal.
+          </p>
+        </div>
+
         <div className="grid-5" data-reveal data-reveal-grid>
           <article className="card card-work">
             <div className="work-num" aria-hidden="true">

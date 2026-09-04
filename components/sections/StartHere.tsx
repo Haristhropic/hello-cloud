@@ -2,11 +2,24 @@ export default function StartHere() {
   return (
     <section id="mulai" className="section section-tint">
       <div className="page-container">
-        <h2 data-reveal>&quot;Saya masih SMP, mulai dari mana?&quot;</h2>
+          <h2 data-reveal>Saya masih SMP: mulai dari mana?</h2>
         <p className="lead" data-reveal>
           Kabar baiknya: kamu tidak perlu langsung belajar AWS selama
           berjam-jam. Mulai dari hal yang dekat dengan kehidupanmu sehari-hari.
         </p>
+
+        <div className="section-photo-card" data-reveal>
+          <div className="photo-frame">
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+              alt="Siswa muda santai belajar bersama di depan laptop"
+              loading="lazy"
+            />
+          </div>
+          <p className="photo-caption">
+            <span>[MULAI SANTAI]</span> Memulai tidak harus menegangkan — cukup rasa ingin tahu dan langkah kecil setiap hari.
+          </p>
+        </div>
 
         <div className="start-grid" data-reveal data-reveal-grid>
           <article className="card start-card">
