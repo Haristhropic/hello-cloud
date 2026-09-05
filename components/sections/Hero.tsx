@@ -38,7 +38,7 @@ export default function Hero() {
             </svg>
             <svg
               className="cloud-tall"
-              viewBox="0 0 360 430"
+              viewBox="0 24 360 400"
               preserveAspectRatio="xMidYMid meet"
             >
               <g className="cloud-g">
@@ -49,7 +49,6 @@ export default function Hero() {
 
           <div className="flow-route">
             <span className="route-packet" aria-hidden="true" />
-            <span className="route-packet route-packet-echo" aria-hidden="true" />
 
             <div className="flow-station">
               <span className="station-glyph">
@@ -121,8 +120,11 @@ export default function Hero() {
               <span className="station-name">Aplikasi</span>
             </div>
           </div>
+          <p className="flow-caption flow-caption-in">
+            Alur sederhana: perangkatmu memakai layanan cloud lewat internet.
+          </p>
         </div>
-        <p className="flow-caption">
+        <p className="flow-caption flow-caption-out">
           Alur sederhana: perangkatmu memakai layanan cloud lewat internet.
         </p>
       </div>
